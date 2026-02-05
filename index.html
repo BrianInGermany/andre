@@ -5,53 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LightWidget Hochkant</title>
 
-  <!-- LightWidget Script -->
-  <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      background: #000; /* optional: schwarz für Insta-Look */
-    }
-
-    /* Container für Hochkant */
-    .widget-wrapper {
-      width: 100%;
-      height: 100vh; /* volle Höhe im Hochkant */
+    /* Seite optional zentrieren */
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 12px;
+      background: #fff; /* ändere zu #000 wenn du willst */
     }
 
-    /* Iframe Styling */
-    .lightwidget-widget {
+    /* Hochkant-Wrapper: 9:16 */
+    .lw-portrait {
+      width: 100%;
+      max-width: 480px;         /* optional */
+      aspect-ratio: 9 / 16;     /* Hochkant */
+      position: relative;
+    }
+
+    /* Fallback für Browser ohne aspect-ratio (selten) */
+    @supports not (aspect-ratio: 1 / 1) {
+      .lw-portrait { height: 80vh; }
+    }
+
+    .lw-portrait iframe.lightwidget-widget {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      max-width: 480px; /* ideal für Hochkant / Handy */
       border: 0;
       overflow: hidden;
+      display: block;
     }
 
-    /* Optional: Tablet */
-    @media (min-width: 768px) {
-      .lightwidget-widget {
-        max-width: 420px;
-      }
+    /* Optional: auf sehr großen Screens etwas größer */
+    @media (min-width: 1024px) {
+      .lw-portrait { max-width: 540px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="widget-wrapper">
+  <div class="lw-portrait">
     <iframe
       src="https://cdn.lightwidget.com/widgets/2d58717c526e519a94c4cd15a79c7134.html"
       scrolling="no"
       allowtransparency="true"
+      class="lightwidget-widget"
+      style="width:100%;border:0;overflow:hidden;">
+    </iframe>
+  </div>
+
+  <!-- LightWidget Script: besser am Ende -->
+  <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+</body>
+</html>
