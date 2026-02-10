@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="refresh" content="120"> 
     <title>Abfahrten HSS18 (Kiosk)</title>
-    <script src="https://www.rmv.de/auskunft/rmv/app/staticfiles/hafas-widget-core.1.0.0.js?language=de_DE"></script>
 </head>
 <body>
     <div id="rmv-kiosk" 
@@ -18,21 +17,26 @@
     </div>
 
     <script>
+        // 1. Zeit sofort berechnen und setzen, bevor das RMV-Skript lädt
         (function() {
-            // Aktuelle Zeit plus 5 Minuten berechnen
             const nun = new Date();
-            nun.setMinutes(nun.getMinutes() + 5); // Hier auf 5 geändert
+            nun.setMinutes(nun.getMinutes() + 5);
 
             const stunden = String(nun.getHours()).padStart(2, '0');
             const minuten = String(nun.getMinutes()).padStart(2, '0');
             const startZeit = stunden + ":" + minuten;
 
-            // Attribut setzen
             const widget = document.getElementById('rmv-kiosk');
-            if (widget) {
-                widget.setAttribute('data-hfs-widget-sq-time', startZeit);
-            }
+            widget.setAttribute('data-hfs-widget-sq-time', startZeit);
+            
+            // Debug-Check für dich:
+            console.log("Startzeit gesetzt auf: " + startZeit);
         })();
+
+        // 2. Erst JETZT das RMV-Skript dynamisch laden
+        const script = document.createElement('script');
+        script.src = "https://www.rmv.de/auskunft/rmv/app/staticfiles/hafas-widget-core.1.0.0.js?language=de_DE";
+        document.head.appendChild(script);
     </script>
 </body>
 </html>
