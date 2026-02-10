@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="refresh" content="120"> <title>Abfahrten HSS18 (Kiosk)</title>
+    <meta http-equiv="refresh" content="120"> 
+    <title>Abfahrten HSS18 (Kiosk)</title>
     <script src="https://www.rmv.de/auskunft/rmv/app/staticfiles/hafas-widget-core.1.0.0.js?language=de_DE"></script>
 </head>
 <body>
-    <div data-hfs-widget="true" data-hfs-widget-cfg-colorscheme="light" data-hfs-widget-sq="true" data-hfs-widget-sq-displaymode="results" data-hfs-widget-sq-location="A=1@O=OF Marktplatz S-Bahn@X=8765669@Y=50105271@U=80@L=3011265@p=1770662770@" data-hfs-widget-sq-locationname="OF Marktplatz S-Bahn"></div>
+    <div id="rmv-kiosk" 
+         data-hfs-widget="true" 
+         data-hfs-widget-cfg-colorscheme="light" 
+         data-hfs-widget-sq="true" 
+         data-hfs-widget-sq-displaymode="results" 
+         data-hfs-widget-sq-location="A=1@O=OF Marktplatz S-Bahn@X=8765669@Y=50105271@U=80@L=3011265@p=1770662770@" 
+         data-hfs-widget-sq-locationname="OF Marktplatz S-Bahn">
+    </div>
 
     <script>
         (function() {
-            // Aktuelle Zeit plus 8 Minuten berechnen
+            // Aktuelle Zeit plus 5 Minuten berechnen
             const nun = new Date();
-            nun.setMinutes(nun.getMinutes() + 8);
+            nun.setMinutes(nun.getMinutes() + 5); // Hier auf 5 geändert
 
             const stunden = String(nun.getHours()).padStart(2, '0');
             const minuten = String(nun.getMinutes()).padStart(2, '0');
@@ -21,7 +29,9 @@
 
             // Attribut setzen
             const widget = document.getElementById('rmv-kiosk');
-            widget.setAttribute('data-hfs-widget-sq-time', startZeit);
+            if (widget) {
+                widget.setAttribute('data-hfs-widget-sq-time', startZeit);
+            }
         })();
     </script>
 </body>
