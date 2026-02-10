@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abfahrten HSS18</title>
-<script src="https://www.rmv.de/auskunft/rmv/app/staticfiles/hafas-widget-core.1.0.0.js?language=de_DE"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="120"> <title>Abfahrten HSS18 (Kiosk)</title>
+    <script src="https://www.rmv.de/auskunft/rmv/app/staticfiles/hafas-widget-core.1.0.0.js?language=de_DE"></script>
 </head>
+<body>
+    <div id="rmv-kiosk" 
+         data-hfs-widget="true" 
+         data-hfs-widget-cfg-colorscheme="light" 
+         data-hfs-widget-sq="true" 
+         data-hfs-widget-sq-displaymode="results" 
+         data-hfs-widget-sq-location="A=2@O=Hermann-Steinhäuser-Straße 18 63065 Offenbach am Main@H=18@X=8771350@Y=50106071@U=103@L=990151784@p=1716290195@" 
+         data-hfs-widget-sq-locationname="Hermann-Steinhäuser-Straße 18, 63065 Offenbach am Main">
+    </div>
 
-<div data-hfs-widget="true" data-hfs-widget-cfg-colorscheme="light" data-hfs-widget-sq="true" data-hfs-widget-sq-displaymode="results" data-hfs-widget-sq-location="A=2@O=Hermann-Steinhäuser-Straße 18 63065 Offenbach am Main@H=18@X=8771350@Y=50106071@U=103@L=990151784@p=1716290195@" data-hfs-widget-sq-locationname="Hermann-Steinhäuser-Straße 18, 63065 Offenbach am Main"></div>
-  
+    <script>
+        (function() {
+            // Aktuelle Zeit plus 8 Minuten berechnen
+            const nun = new Date();
+            nun.setMinutes(nun.getMinutes() + 8);
+
+            const stunden = String(nun.getHours()).padStart(2, '0');
+            const minuten = String(nun.getMinutes()).padStart(2, '0');
+            const startZeit = stunden + ":" + minuten;
+
+            // Attribut setzen
+            const widget = document.getElementById('rmv-kiosk');
+            widget.setAttribute('data-hfs-widget-sq-time', startZeit);
+        })();
+    </script>
 </body>
 </html>
