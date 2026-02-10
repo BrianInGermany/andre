@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="refresh" content="120"> 
     <title>Abfahrten HSS18 (Kiosk)</title>
+    <style>
+        /* Wir blenden die ersten 3 Zeilen pauschal aus, 
+           um einen manuellen 'Offset' zu simulieren */
+        .hfs-widget-row:nth-child(-n+3) {
+            display: none !important;
+        }
+    </style>
     <script src="https://www.rmv.de/auskunft/rmv/app/staticfiles/hafas-widget-core.1.0.0.js?language=de_DE"></script>
 </head>
 <body>
@@ -12,7 +19,7 @@
          data-hfs-widget-cfg-colorscheme="light" 
          data-hfs-widget-sq="true" 
          data-hfs-widget-sq-displaymode="results" 
-         data-hfs-widget-sq-offset="5"
+         data-hfs-widget-sq-maxresults="20"
          data-hfs-widget-sq-location="A=1@O=OF Marktplatz S-Bahn@X=8765669@Y=50105271@U=80@L=3011265@p=1770662770@" 
          data-hfs-widget-sq-locationname="OF Marktplatz S-Bahn">
     </div>
